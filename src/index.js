@@ -6,7 +6,7 @@ const logger = require('morgan')
 app.use(cors())
 app.use(logger('dev'))
 app.get('/api', function (req, res) {
-  res.send({ message: 'Hello World!'});
+  res.send({ message: 'Hello World!!'});
 });
 
 app.get('/healthcheck', function (req, res) {
