@@ -13,27 +13,5 @@
     "build": "react-scripts build",
     "test": "jest || exit 0",
     "eject": "react-scripts eject"
-  },
-  "jest": {
-    "testTimeout": 80000,
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "<rootDir>/dist/",
-      "<rootDir>/node_modules/"
-    ],
-    "modulePaths": [
-      "<rootDir>/"
-    ],
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json",
-      "tsx",
-      "jsx"
-    ]
   }
 }
