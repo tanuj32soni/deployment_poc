@@ -1,34 +1,31 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:6-alpine'
-            args '-p 3000:3000 -p 5000:5000' 
-        }
-    }
-    environment {
-      CI = 'true' 
-      HOME = '.'
-    }
+  agent {
+    label 'docker' 
+  }
   stages {
-    stage('Install dependencies') {
+    stage('Test') {
+      agent {
+        docker {
+          // Set both label and image
+          label 'docker'
+          image 'node:7-alpine'
+        }
+      }
       steps {
           sh 'npm install'
-      }
-    }
-    stage('Test') {
-      steps {
           sh './jenkins/scripts/test.sh'
       }
     }
     stage('Build Image') {
+      agent {
+        docker {
+          // Set both label and image
+          label 'docker'
+          image 'node:7-alpine'
+        }
+      }
       steps {
-        sh 'docker build . -t test-app:${BUILD_NUMBER} . ' 
-        // script {
-        //   def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-        //   withEnv(["DOCKER=${dockerTool}/bin"]) {
-        //       sh "${DOCKER}/docker build . -t test-build"
-        //   }
-        // }
+        sh 'docker build . -t test-app:${BUILD_NUMBER}' 
       }
     }
   }
