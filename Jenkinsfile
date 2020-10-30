@@ -15,7 +15,6 @@ pipeline {
       }
     }
     stage('Build Image') {
-      agent { label 'master' }
       steps {
           sh './jenkins/scripts/build-image.sh'
       }
