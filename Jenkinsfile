@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:12'
-      args '-p 3000:3000 -p 5000:5000' 
-    }
-  }
+  agent any
     environment {
       npm_config_cache = 'npm-cache'
     }
@@ -21,12 +16,13 @@ pipeline {
     }
     stage('Build Image') {
       steps {
-        script {
-          def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-          withEnv(["DOCKER=${dockerTool}/bin"]) {
-              sh "${DOCKER}/docker build . -t test-build"
-          }
-        }
+        sh 'docker build . -t test-app:${BUILD_NUMBER} . ' 
+        // script {
+        //   def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+        //   withEnv(["DOCKER=${dockerTool}/bin"]) {
+        //       sh "${DOCKER}/docker build . -t test-build"
+        //   }
+        // }
       }
     }
   }
