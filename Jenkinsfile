@@ -1,32 +1,28 @@
 pipeline {
   agent {
-    label 'docker' 
+    docker {
+      image 'node:12'
+      args '-p 3000:3000 -p 5000:5000' 
+    }
   }
+    environment {
+      npm_config_cache = 'npm-cache'
+    }
   stages {
-    stage('Test') {
-      agent {
-        docker {
-          // Set both label and image
-          label 'docker'
-          image 'node:7-alpine'
-        }
-      }
+    stage('Install dependencies') {
       steps {
           sh 'npm install'
+      }
+    }
+    stage('Test') {
+      steps {
           sh './jenkins/scripts/test.sh'
       }
     }
-    stage('Build Image') {
-      agent {
-        docker {
-          // Set both label and image
-          label 'docker'
-          image 'node:7-alpine'
-        }
-      }
-      steps {
-        sh 'docker build . -t test-app:${BUILD_NUMBER}' 
-      }
-    }
+    // stage('Build Image') {
+    //   steps {
+    //       sh './jenkins/scripts/build-image.sh'
+    //   }
+    // }
   }
 }
