@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'bitnami/kubectl:latest'
+      image 'node:12'
       args '-p 3000:3000 -p 5000:5000' 
     }
   }
