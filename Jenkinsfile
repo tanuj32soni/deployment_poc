@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:12'
-      args '-p 3000:3000 -p 5000:5000' 
-    }
-  }
+  agent { label 'master' }
     environment {
       npm_config_cache = 'npm-cache'
     }
