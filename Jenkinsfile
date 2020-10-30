@@ -24,7 +24,7 @@ pipeline {
         script {
           def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
           withEnv(["DOCKER=${dockerTool}/bin"]) {
-              sh "sudo ${DOCKER}/docker build . -t test-build"
+              sh "${DOCKER}/docker build . -t test-build"
           }
         }
       }
