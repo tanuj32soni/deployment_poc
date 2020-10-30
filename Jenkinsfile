@@ -2,6 +2,8 @@ pipeline {
   agent any
     environment {
       npm_config_cache = 'npm-cache'
+      CI = 'true' 
+      HOME = '.'
     }
   stages {
     stage('Install dependencies') {
