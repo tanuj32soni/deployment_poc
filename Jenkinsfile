@@ -11,12 +11,7 @@ pipeline {
   stages {
     stage('Install dependencies') {
       steps {
-                script {
-          def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-          withEnv(["DOCKER=${dockerTool}/bin"]) {
-              //stages
-              //here we can trigger: sh "sudo ${DOCKER}/docker ..."
-          }
+
         }
           sh 'npm install'
       }
@@ -28,7 +23,11 @@ pipeline {
     }
     stage('Build Image') {
       steps {
-          sh './jenkins/scripts/build-image.sh'
+                          script {
+          def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+          withEnv(["DOCKER=${dockerTool}/bin"]) {
+              sh "sudo ${DOCKER}/docker build ."
+          }
       }
     }
   }
