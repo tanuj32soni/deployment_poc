@@ -1,3 +1,3 @@
 # !/bin/bash
 
-make build-all
+docker build ../.. -t backend

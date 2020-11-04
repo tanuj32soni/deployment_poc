@@ -1,13 +1,13 @@
 pipeline {
   agent {
     docker {
-      image 'node:12'
+      image 'tanujdocker/docker-in-docker'
       args '-p 3000:3000 -p 5000:5000' 
     }
   }
-    environment {
-      npm_config_cache = 'npm-cache'
-    }
+  environment {
+    npm_config_cache = 'npm-cache'
+  }
   stages {
     stage('Install dependencies') {
       steps {
@@ -19,10 +19,10 @@ pipeline {
           sh './jenkins/scripts/test.sh'
       }
     }
-    // stage('Build Image') {
-    //   steps {
-    //       sh './jenkins/scripts/build-image.sh'
-    //   }
-    // }
+    stage('Build Image') {
+      steps {
+          sh './jenkins/scripts/build-image.sh'
+      }
+    }
   }
 }
