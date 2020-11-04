@@ -1,3 +1,3 @@
 # !/bin/bash
 
-docker build ../../. -t backend:latest
+docker build . -t backend:latest
