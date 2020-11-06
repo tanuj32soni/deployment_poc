@@ -19,10 +19,10 @@ pipeline {
           sh './jenkins/scripts/test.sh'
       }
     }
-    stage('Build Image') {
-      steps {
-          sh './jenkins/scripts/build-image.sh'
-      }
-    }
+    // stage('Build Image') {
+    //   steps {
+    //       sh './jenkins/scripts/build-image.sh'
+    //   }
+    // }
   }
 }
