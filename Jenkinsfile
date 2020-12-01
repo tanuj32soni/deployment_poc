@@ -1,5 +1,8 @@
 pipeline {
   agent any
+
+  tools {nodejs "node"}
+
   environment {
     npm_config_cache = 'npm-cache'
   }
