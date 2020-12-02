@@ -2,6 +2,7 @@ pipeline {
   agent any
   tools {
     dockerTool "docker"
+    nodejs "node"
   }
   environment {
     npm_config_cache = 'npm-cache'
