@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'node:12-alpine'
-    }
-  }
+  agent any
   tools {
     dockerTool "docker"
     nodejs "node"
