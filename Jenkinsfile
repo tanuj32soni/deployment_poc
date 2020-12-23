@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    dockerfile {
+      filename 'Dockerfile'
+    }
+  }
   tools {
     dockerTool "docker"
     nodejs "node"
