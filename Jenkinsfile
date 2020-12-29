@@ -1,8 +1,6 @@
 pipeline {
   agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
+    kubernetes true
   }
   tools {
     dockerTool "docker"
